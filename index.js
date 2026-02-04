@@ -46,7 +46,7 @@ app.delete("/department/id", (req, res) =>{
   let findD = department.findIndex((e) => e.id == id);
   if (findD == -1) res.send("ไม่พบข้อมูล");
   let deleteD = department.splice(findD, 1);
-  res.send(department);
+  res.send(deleteD);
 });
 
 app.listen(port, () => {
