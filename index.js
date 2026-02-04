@@ -17,12 +17,35 @@ app.get("/department", (req, res) =>{
   res.send(department);
 });
 
+app.get("/department/:id", (req, res) =>{
+  let id = req.params.id;
+  let findD = department.findIndex((e) => e.id == id);
+  if (findD == -1) res.send("ไม่พบข้อมูล");
+  res.send(department[findD]);
+});
+
 app.post("/department", (req, res) =>{
   let newDepartment = {
     id: department.length +1,
     name: req.body.name,
   };
   department.push(newDepartment);
+  res.send(department);
+});
+
+app.put("/department/:id", (req, res) =>{
+  let id = req.params.id;
+  let findD = department.findIndex((e) => e.id == id);
+  if (findD == -1) res.send("ไม่พบข้อมูล");
+  department[findD].name = req.body.name;
+  res.send(department);
+});
+
+app.delete("/department/id", (req, res) =>{
+  let id = req.params.id;
+  let findD = department.findIndex((e) => e.id == id);
+  if (findD == -1) res.send("ไม่พบข้อมูล");
+  let deleteD = department.splice(findD, 1);
   res.send(department);
 });
 
